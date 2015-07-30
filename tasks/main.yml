@@ -2,11 +2,11 @@
 # tasks file for ansible-postfix
 - name: Checking to make sure postfix is installed
   apt: name={{ item }} state=installed
-  when: ansible_os_family == 'Debian'
-  tags: [postfix]
+    tags: [postfix]
   with_items:
     - postfix
     - mailutils
+  when: ansible_os_family == 'Debian'
 
 - name: Create postfix configurations
   template: src={{ item }}.j2 dest={{ postfix_conf_dir }}/{{ item }} mode=0644 owner=root group=root backup=yes
@@ -16,6 +16,7 @@
   with_items:
     - generic
     - main.cf
+  when: configure_postfix is defined and configure_postfix
 
 - name: Checking to make sure postfix is running
   service: name=postfix state=running enabled=yes
