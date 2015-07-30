@@ -8,6 +8,14 @@
     - mailutils
   when: ansible_os_family == 'Debian'
 
+- name: Checking to make sure postfix is installed
+  yum: name={{ item }} state=installed
+  tags: [postfix]
+  with_items:
+    - postfix
+    - mailx
+  when: ansible_os_family == 'RedHat'
+
 - name: Create postfix configurations
   template: src={{ item }}.j2 dest={{ postfix_conf_dir }}/{{ item }} mode=0644 owner=root group=root backup=yes
   notify: restart postfix
