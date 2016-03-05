@@ -6,7 +6,7 @@
 # is /etc/mailname.
 #myorigin = /etc/mailname
 
-smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
+smtpd_banner = $myhostname ESMTP $mail_name
 biff = no
 
 # appending .domain is the MUA's job.
@@ -56,5 +56,8 @@ inet_protocols = all
 mydomain = {{postfix_rewrite_domain}}
 {% endif %}
 {% if enable_postfix_domain_rewrite %}
-smtp_generic_maps = hash:/etc/postfix/generic
+smtp_generic_maps = {{ postfix_domain_rewrite_filetype }}:{{ postfix_conf_dir }}/generic
+{% endif %}
+{% if enable_sender_canonical %}
+sender_canonical_maps = regexp:{{ postfix_conf_dir }}/sender_canonical
 {% endif %}

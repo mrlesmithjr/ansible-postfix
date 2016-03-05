@@ -16,14 +16,25 @@
     - mailx
   when: ansible_os_family == 'RedHat'
 
-- name: Create postfix configurations
-  template: src={{ item }}.j2 dest={{ postfix_conf_dir }}/{{ item }} mode=0644 owner=root group=root backup=yes
+- name: Create canonical maps if enabled
+  copy: dest={{ postfix_conf_dir }}/sender_canonical content={{ item }} mode=0644 owner=root group=root backup=yes
+  with_items: "{{ postfix_sender_canonical_maps }}"
+  tags: [postfix]
   notify: restart postfix
+  when: enable_sender_canonical
+
+- name: Create postfix configuration main.cf
+  template: src=templates/main.cf.j2 dest={{ postfix_conf_dir }}/main.cf mode=0644 owner=root group=root backup=yes
   tags: [postfix]
   register: postfix
-  with_items:
-    - generic
-    - main.cf
+  notify: restart postfix
+  when: configure_postfix is defined and configure_postfix
+
+- name: Create postfix configuration 'generic'
+  template: src=templates/{{ postfix_generic_template }} dest={{ postfix_conf_dir }}/generic mode=0644 owner=root group=root backup=yes
+  tags: [postfix]
+  register: postfix
+  notify: restart postfix
   when: configure_postfix is defined and configure_postfix
 
 - name: Checking to make sure postfix is running
@@ -33,4 +44,5 @@
 - name: rebuilding generic.db
   command: postmap /etc/postfix/generic
   tags: [postfix]
-  when: postfix.changed
+  notify: restart postfix
+  when: postfix.changed and postfix_domain_rewrite_filetype == 'hash'
