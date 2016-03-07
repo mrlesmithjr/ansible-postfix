@@ -17,8 +17,7 @@
   when: ansible_os_family == 'RedHat'
 
 - name: Create canonical maps if enabled
-  copy: dest={{ postfix_conf_dir }}/sender_canonical content={{ item }} mode=0644 owner=root group=root backup=yes
-  with_items: "{{ postfix_sender_canonical_maps }}"
+  template: src=templates/canonical.j2 dest={{ postfix_conf_dir }}/canonical mode=0644 owner=root group=root backup=yes
   tags: [postfix]
   notify: restart postfix
   when: enable_sender_canonical

@@ -59,5 +59,14 @@ mydomain = {{postfix_rewrite_domain}}
 smtp_generic_maps = {{ postfix_domain_rewrite_filetype }}:{{ postfix_conf_dir }}/generic
 {% endif %}
 {% if enable_sender_canonical %}
-sender_canonical_maps = regexp:{{ postfix_conf_dir }}/sender_canonical
+sender_canonical_maps = regexp:{{ postfix_conf_dir }}/canonical
+{% endif %}
+{% if enable_postifx_dkim %}
+smtpd_milters           = inet:127.0.0.1:8891
+non_smtpd_milters       = $smtpd_milters
+milter_default_action   = accept
+milter_protocol         = 2
+{% endif %}
+{% if enable_smtp_helo_name %}
+smtp_helo_name = {{ postfix_smtp_helo_name }}
 {% endif %}
