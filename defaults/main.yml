@@ -23,3 +23,8 @@ postfix_domain_rewrite_filetype: hash
 postfix_generic_template: generic.j2
 postfix_altgeneric_maps:
   - "/^(.*@)something.com$/     ${1}somethingelse.co.uk"
+enable_postifx_dkim: false
+
+# Support the setting of the helo name
+enable_smtp_helo_name: false
+postfix_smtp_helo_name: "{{ ansible_fqdn }}"
