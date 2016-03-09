@@ -18,13 +18,15 @@ append_dot_mydomain = no
 readme_directory = no
 
 # TLS parameters
-smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
-smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 {% if postfix_use_tls is not defined %}
 smtpd_use_tls=yes
+smtpd_tls_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+smtpd_tls_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
 {% endif %}
 {% if postfix_use_tls %}
 smtpd_use_tls=yes
+smtpd_tls_cert_file={{ postfix_tls_cert_file }}
+smtpd_tls_key_file={{ postfix_tls_cert_key }}
 {% endif %}
 {% if not postfix_use_tls %}
 smtpd_use_tls=no
