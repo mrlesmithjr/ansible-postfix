@@ -25,6 +25,25 @@ postfix_mynetworks:  #defines which networks are allowed to relay through postfi
 postfix_relayhost: '[smtp.example.org]'  #define smtp relay server...define here or globally in group_vars/all
 postfix_rewrite_domain: example.org  #defines what domain all outgoing email should be set to for @domain.example...should be the same as smtp_domain_name
 postfix_use_tls: true  #defines if tls should be used or not
+
+# enable 'sender_canonical_maps = regexp:/etc/postfix/sender_canonical' in main.cf
+enable_sender_canonical: false
+# if enable_sender_canonical == true, use mappings set in...
+postfix_sender_canonical_maps:
+  - "/^(.*@)example.com$/     ${1}example.co.uk"
+
+# Can be set to 'hash' or 'regexp' filetype
+postfix_domain_rewrite_filetype: hash
+
+# set which template to use for generic maps file
+# values are currently the original 'generic.j2' or
+# the more flexible 'altgeneric.j2'
+postfix_generic_template: generic.j2
+
+# when using the 'altgeneric.j2' template, use mappings set in...
+postfix_altgeneric_maps:
+  - "/^(.*@)something.com$/     ${1}somethingelse.co.uk"
+
 ````
 
 Dependencies
