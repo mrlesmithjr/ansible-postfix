@@ -2,12 +2,12 @@
 # handlers file for ansible-postfix
 - name: restart postfix
   service:
-    name: "postfix"
-    state: "restarted"
-  when: not ansible_check_mode
+    name: postfix
+    state: restarted
+  become: true
 
 - name: reload postfix
   service:
-    name: "postfix"
-    state: "reloaded"
-  when: not ansible_check_mode
+    name: postfix
+    state: reloaded
+  become: true

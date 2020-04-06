@@ -1,0 +1,47 @@
+---
+- name: configure | Create canonical maps if enabled
+  template:
+    src: canonical.j2
+    dest: "{{ postfix_conf_dir }}/canonical"
+    mode: 0644
+    owner: root
+    group: root
+  become: true
+  notify: restart postfix
+  when: enable_sender_canonical|bool
+
+- name: configure | Configuring Postfix
+  template:
+    src: main.cf.j2
+    dest: "{{ postfix_conf_dir }}/main.cf"
+    mode: 0644
+    owner: root
+    group: root
+  become: true
+  register: postfix
+  notify: restart postfix
+  when:
+    - configure_postfix is defined
+    - configure_postfix|bool
+
+- name: configure | Create postfix configuration 'generic'
+  template:
+    src: "{{ postfix_generic_template }}"
+    dest: "{{ postfix_conf_dir }}/generic"
+    mode: 0644
+    owner: root
+    group: root
+  become: true
+  register: postfix
+  notify: restart postfix
+  when:
+    - configure_postfix is defined
+    - configure_postfix|bool
+
+- name: configure | Rebuilding generic.db
+  command: postmap /etc/postfix/generic
+  become: true
+  notify: restart postfix
+  when:
+    - postfix.changed
+    - postfix_domain_rewrite_filetype == 'hash'
