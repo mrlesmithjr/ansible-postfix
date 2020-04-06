@@ -1,3 +1,9 @@
+commit dd08f1006dc8e4dfccf06dc25ef3392b30c2dd86
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Mon Apr 6 14:41:36 2020 -0400
+
+    Broke tasks out from main
+
 commit 08dba004c20adc9b8da4673c6d9cab9439bbcae8
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Mon Apr 6 13:45:16 2020 -0400
