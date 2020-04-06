@@ -1,0 +1,7 @@
+---
+- name: service | Ensuring Postfix Is Started and Enabled
+  service:
+    name: postfix
+    state: started
+    enabled: true
+  become: true

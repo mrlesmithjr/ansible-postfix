@@ -1,0 +1,9 @@
+---
+- name: debian | Installing Postfix
+  apt:
+    name:
+      - mailutils
+      - postfix
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"

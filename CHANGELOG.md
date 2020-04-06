@@ -1,3 +1,9 @@
+commit 08dba004c20adc9b8da4673c6d9cab9439bbcae8
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Mon Apr 6 13:45:16 2020 -0400
+
+    Cleaned up tasks, etc.
+
 commit 6a3a4f84b1dfcf363d06007743f8892f5ff3a340
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Mon Apr 6 13:35:43 2020 -0400
