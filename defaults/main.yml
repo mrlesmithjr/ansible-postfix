@@ -51,3 +51,9 @@ enable_always_add_missing_headers: false
 
 # Inet protocols enabled (all, ipv4, ipv6)
 postfix_inet_protocols: all
+
+# Group for configuration files
+postfix_config_group: root
+
+# Path to binaries
+postfix_postmap_path: postmap
