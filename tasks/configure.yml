@@ -5,7 +5,7 @@
     dest: "{{ postfix_conf_dir }}/canonical"
     mode: 0644
     owner: root
-    group: "{{postfix_config_group}}"
+    group: "{{ postfix_config_group }}"
   become: true
   notify: restart postfix
   when: enable_sender_canonical|bool
@@ -16,7 +16,7 @@
     dest: "{{ postfix_conf_dir }}/main.cf"
     mode: 0644
     owner: root
-    group: "{{postfix_config_group}}"
+    group: "{{ postfix_config_group }}"
   become: true
   register: postfix
   notify: restart postfix
@@ -30,7 +30,7 @@
     dest: "{{ postfix_conf_dir }}/generic"
     mode: 0644
     owner: root
-    group: "{{postfix_config_group}}"
+    group: "{{ postfix_config_group }}"
   become: true
   register: postfix
   notify: restart postfix
@@ -39,7 +39,7 @@
     - configure_postfix|bool
 
 - name: configure | Rebuilding generic.db
-  command: "{{postfix_postmap_path}} {{postfix_conf_dir}}/generic"
+  command: "{{ postfix_postmap_path }} {{ postfix_conf_dir }}/generic"
   become: true
   notify: restart postfix
   when:
