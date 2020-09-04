@@ -38,7 +38,7 @@
     - configure_postfix is defined
     - configure_postfix|bool
 
-- name: configure | Rebuilding generic.db
+- name: configure | Rebuilding generic.db # noqa 503
   command: postmap /etc/postfix/generic
   become: true
   notify: restart postfix
