@@ -1,8 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  vars:
-    configure_postfix: true
   tasks:
     - name: Include ansible-postfix
       include_role:
