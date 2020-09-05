@@ -1,3 +1,42 @@
+commit 380849cd117585fcfee6322b6c39e243b0bffbca
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Fri Sep 4 11:16:32 2020 -0400
+
+    Added configure_postfix: true for Molecule
+    
+    - This will ensure that we test configurations
+    - This also resolves the issue of the service not starting for RedHat distros when testing w/Molecule
+
+commit 9f51e55b996b7bd7627ee634d351648ffc3663ab
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Fri Sep 4 10:41:23 2020 -0400
+
+    Updated Molecule tests
+
+commit b8244b9d074e2c79c3cbd83d2f4a7de752247af9
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Fri Sep 4 10:41:09 2020 -0400
+
+    Fixed linting issues
+
+commit ef2c0b4c08736cef98ae1d559e586f72a97b7c5e
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Fri Sep 4 10:40:38 2020 -0400
+
+    Updated CI Tests
+
+commit 28cb0b7ac65226f4f6f1e348619de74d6441622e
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Fri Sep 4 10:39:22 2020 -0400
+
+    Updated Python requirements
+
+commit fa0135a616a4997abab162b3e8238e0a885fcf4e
+Author: Larry Smith Jr <mrlesmithjr@gmail.com>
+Date:   Mon Apr 6 14:41:58 2020 -0400
+
+    Testing with config postfix true
+
 commit dd08f1006dc8e4dfccf06dc25ef3392b30c2dd86
 Author: Larry Smith Jr <mrlesmithjr@gmail.com>
 Date:   Mon Apr 6 14:41:36 2020 -0400
