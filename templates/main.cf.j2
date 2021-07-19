@@ -34,7 +34,7 @@ mynetworks = {{ postfix_mynetworks|join(' ') }}
 mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = all
-inet_protocols = all
+inet_protocols = {{ postfix_inet_protocols }}
 {% if postfix_rewrite_domain is defined and enable_postfix_domain_rewrite %}
 mydomain = {{postfix_rewrite_domain}}
 {% endif %}

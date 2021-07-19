@@ -48,3 +48,6 @@ enable_postifx_dkim: false
 enable_smtp_helo_name: false
 postfix_smtp_helo_name: "{{ ansible_fqdn }}"
 enable_always_add_missing_headers: false
+
+# Inet protocols enabled (all, ipv4, ipv6)
+postfix_inet_protocols: all
