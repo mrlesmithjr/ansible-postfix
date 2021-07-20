@@ -57,3 +57,8 @@ postfix_config_group: root
 
 # Path to binaries
 postfix_postmap_path: postmap
+
+# Hostname if needed to be overriden
+# Is used for `myhostname` and `mydestination`
+postfix_myhostname: "{{ ansible_fqdn }}"
+
