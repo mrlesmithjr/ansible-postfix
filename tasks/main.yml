@@ -6,6 +6,9 @@
 - include_tasks: redhat.yml
   when: ansible_os_family == "RedHat"
 
+- include_tasks: freebsd.yml
+  when: ansible_os_family == "FreeBSD"
+
 - include_tasks: configure.yml
 
 - include_tasks: service.yml

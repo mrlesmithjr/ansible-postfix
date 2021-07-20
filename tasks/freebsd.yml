@@ -1,0 +1,7 @@
+---
+- name: freebsd | Installing Postfix
+  pkgng:
+    name: postfix
+    state: present
+  become: true
+  when: ansible_os_family == "FreeBSD"
