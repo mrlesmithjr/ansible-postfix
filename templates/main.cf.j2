@@ -21,10 +21,10 @@ smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
 
 smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
-myhostname = {{ansible_fqdn}}
+myhostname = {{ postfix_myhostname }}
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-mydestination = {{ansible_fqdn}}, localhost
+mydestination = {{ postfix_myhostname }}, localhost
 {% if postfix_relayhost is defined and enable_postfix_relayhost %}
 relayhost = {{postfix_relayhost}}
 {% endif %}
